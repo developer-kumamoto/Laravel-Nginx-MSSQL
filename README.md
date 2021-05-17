@@ -5,24 +5,24 @@ For laravel development starter kit.
 1. Checkout
 2. Create Laravel project.
    ```
-   docker-compose run --rm laravel-mssql_composer composer create-project --prefer-dist laravel/laravel .
+   docker-compose run --rm laravel_mssql_composer composer create-project --prefer-dist laravel/laravel .
    ```
 3. Change storage permission.
    ```
-   docker-compose run --rm laravel-mssql_app chmod go+w -R storage
+   docker-compose run --rm laravel_mssql_app chmod go+w -R storage
    ```
 4. Change DATABASE settings in .env file.
    ```
    DB_CONNECTION=sqlsrv
-   DB_HOST=laravel-mssql_db
+   DB_HOST=laravel_mssql_db
    DB_PORT=1433
-   DB_DATABASE=laravel-mssql
-   DB_USERNAME=laravel-mssql_db_user
-   DB_PASSWORD=laravel-mssql_db_P@ssw0rd
+   DB_DATABASE=laravel_mssql
+   DB_USERNAME=laravel_mssql_db_user
+   DB_PASSWORD=laravel_mssql_db_P@ssw0rd
    ```
 5. Start.
    ```command:powershell
-   docker-compose up -d laravel-mssql_app laravel-mssql_db laravel-mssql_web
+   docker-compose up -d laravel_mssql_app laravel_mssql_db laravel_mssql_web
    ```
 6. Into DB container and Create Database and User via SSMS  
    ```
