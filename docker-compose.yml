@@ -1,0 +1,45 @@
+version: "3.9"
+services: 
+    laravel-mssql_composer:
+        image: composer
+        volumes:
+          - ./backend:/work/backend
+        working_dir: /work/backend
+
+    laravel-mssql_app:
+        build: ./infra/app
+        ports:
+            - 9000:9000
+        volumes: 
+            - ./backend:/var/www/html
+        working_dir: /var/www/html
+
+    laravel-mssql_web:
+        image: nginx:stable-alpine
+        ports:
+            -  8888:80
+        volumes:
+            -  ./backend:/var/www/html
+            -  ./infra/web/default.conf:/etc/nginx/conf.d/default.conf
+        depends_on:
+            -  laravel-mssql_app
+            -  laravel-mssql_db
+
+    laravel-mssql_db:
+        image: mcr.microsoft.com/mssql/server:2017-latest
+        environment:
+          ACCEPT_EULA: Y
+          SA_PASSWORD: P@ssw0rd
+        ports:
+            - "1433:1433"
+        volumes: 
+            - laravel-mssql-db-data:/var/opt/mssql/data
+            - ./infra/db:/var/db
+    
+    laravel-mssql_adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8080:8080
+volumes: 
+    laravel-mssql-db-data:
