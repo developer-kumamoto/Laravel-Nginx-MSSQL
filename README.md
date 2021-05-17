@@ -24,7 +24,7 @@ For laravel development starter kit.
    ```command:powershell
    docker-compose up -d laravel_mssql_app laravel_mssql_db laravel_mssql_web
    ```
-6. Into DB container and Create Database and User via SSMS  
+6. Into DB container and Create Database and User.
    ```
    ./opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "P@ssw0rd" -i /var/db/createDatabase.sql
    ```
