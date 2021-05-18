@@ -5,7 +5,7 @@ For laravel development starter kit.
 1. Checkout
 2. Create Laravel project.
    ```
-   docker-compose run --rm laravel_mssql_composer composer create-project --prefer-dist laravel/laravel .
+   docker-compose run --rm laravel_mssql_app composer create-project --prefer-dist laravel/laravel .
    ```
 3. Change storage permission.
    ```

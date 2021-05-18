@@ -1,5 +1,7 @@
 FROM php:fpm
 
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+
 RUN apt-get update && apt-get install -y \
     git \
     libzip-dev \
@@ -22,3 +24,9 @@ RUN pecl install sqlsrv
 RUN pecl install pdo_sqlsrv
 RUN docker-php-ext-enable sqlsrv
 RUN docker-php-ext-enable pdo_sqlsrv
+
+# Ldap
+RUN apt-get install libldap2-dev -y && \
+rm -rf /var/lib/apt/lists/* && \
+docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ && \
+docker-php-ext-install ldap
